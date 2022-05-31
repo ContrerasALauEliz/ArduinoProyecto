@@ -1,0 +1,21 @@
+//Laura Elizabeth Contreras Alcalá.
+
+int gas; //Mínimo (gas del ambiente) 306 y Máximo (exceso de gas) 746.
+// La variable "gas" toma en automático el valor 0.
+int buzz = 2; //Pin de salida del buzzer, no es un valor.
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(A0, INPUT); //Se selecciona A0 como entrada, para detección de los valores del sensor.
+  pinMode(buzz, OUTPUT); //Se selecciona como salida
+}
+
+void loop() {
+  gas = analogRead(A0); //Lectura del puerto analógico.
+  Serial.println(gas);
+  delay(500);
+  if(gas>=600){ //Condición de activación.
+    tone(buzz, 523, 200); //Se establece un tono de alarma del buzzer.
+    delay(500); //Retardo de medio segundo para repetir en caso de permanecer en el if.
+  }
+}
